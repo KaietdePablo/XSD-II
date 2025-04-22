@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Nombre: [Kaiet de Pablo] 
+Curso: [Asir1] 
+Fecha: [20/04/2025] 
+Ejercicio: [Números y letras] 
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!-- Tipo simple para valores entre 00 y 19 con dos dígitos -->
+  <xs:simpleType name="tipoDosDigitos">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="0[0-9]|1[0-9]"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Tipo simple para el atributo 'letra', restringido a X, Y o Z -->
+
+  <xs:simpleType name="tipoLetraXYZ">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="X"/>
+      <xs:enumeration value="Y"/>
+      <xs:enumeration value="Z"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Elemento raíz -->
+
+  <xs:element name="fichas">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="ficha" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="codigo" type="tipoDosDigitos"/>
+              <xs:element name="nombre" type="xs:string"/>
+            </xs:sequence>
+            <xs:attribute name="numero" type="tipoDosDigitos" use="required"/>
+            <xs:attribute name="letra" type="tipoLetraXYZ" use="optional"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

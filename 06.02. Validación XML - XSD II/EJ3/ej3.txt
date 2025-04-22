@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Nombre: [Kaiet de Pablo] 
+Curso: [Asir1] 
+Fecha: [20/04/2025] 
+Ejercicio: [Escribir expresiones regulares] 
+-->
+1."Capítulo 0" hasta "Capítulo 9" (solo se permite un dígito)
+
+Opción 1: Capítulo \d
+
+Opción 2: Capítulo [0-9]
+
+2. "Capítulo 0" hasta "Capítulo 99" (uno o dos dígitos)
+Opción 1: Capítulo \d{1,2}
+
+Opción 2: Capítulo [0-9]{1,2}
+
+3. "Capítulo 1" hasta "Capítulo 99" (no se permite "Capítulo 0")
+Opción 1: Capítulo [1-9]\d?
+(Empieza por un dígito del 1 al 9, seguido opcionalmente por otro dígito)
+
+Opción 2: Capítulo [1-9][0-9]?
+
+4. "Capítulo 0" hasta "Capítulo 100"... (uno o más dígitos)
+Opción 1: Capítulo \d+
+
+Opción 2: Capítulo [0-9]{1,}
+
+5. Cualquier valor de dos caracteres, el primero no es dígito y el segundo es "Z"
+Opción 1: \D{1}Z
+
+Opción 2: \D{1}Z (es equivalente, aquí no hay mucha variación posible con lo permitido, pero se podría escribir también:)
+
+Opción 3: [^\d]Z (aunque no está en la tabla directamente, \D ya lo cubre)
+
+6. "ABBC", "ABBBC", "ABBBBC", "ABBBBBC" (una A, seguida de dos o más B, terminando en C)
+Opción 1: AB{2,}C
+
+Opción 2: ABBB+?C
+(aunque esto técnicamente requiere lookahead para validación exacta, con lo permitido lo más correcto es usar {2,})
+
+7. Empieza por "R", seguido de dos o más S, finaliza con opcional dígito del 3 al 8
+Opción 1: RS{2,}[3-8]?
+
+Opción 2: R(S{2,})([3-8])?
+(Esto usa agrupación solo para claridad visual, no es estrictamente necesario)
+
+8. Empieza con "COD", seguido de tres dígitos, y luego uno o más caracteres cualquiera
+Opción 1: COD\d{3}.+
+
+Opción 2: COD[0-9]{3}.+
